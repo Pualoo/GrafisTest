@@ -1,0 +1,31 @@
+<div class="jumbotron py-3">
+    <h1 class="display-4 text-center">Produtos</h1>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5">
+            <app-products-form></app-products-form>
+        </div>
+        <div class="col-md-7">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Imagem</th>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tr *ngFor="let productinfo of service.list">
+                    <td><img [src]="createImgPath(productinfo.imgPath)" alt="product picture" style="width:60px; height:60px;"></td>
+                    <td (click)="populateForm(productinfo)">{{productinfo.nameProduct}}</td>
+                    <td (click)="populateForm(productinfo)">{{productinfo.descriptionProduct}}</td>
+                    <td (click)="populateForm(productinfo)">{{productinfo.valueProduct}}</td>
+                    <td>
+                        <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(productinfo.idProduct)"></i>
+                    </td>
+                </tr>
+            </table>
+        </div>
+</div>

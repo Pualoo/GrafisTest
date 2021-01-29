@@ -1,0 +1,18 @@
+<form novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
+    <input type="hidden" name="idClient" [value]="service.formData.idClient" />
+    <div class="form-group">
+        <label>NAME</label>
+        <input class="form-control form-control-lg" placeholder="Full Name" name="nameClient"
+            #nameClient="ngModel" [(ngModel)]="service.formData.nameClient"
+            required [class.invalid]="nameClient.invalid &#038;&#038; nameClient.touched">
+    </div>
+    <div class="form-group">
+        <label>EMAIL</label>
+        <input type="email" class="form-control form-control-lg" placeholder="EXAMPLE@TEST.NET" name="emailClient"
+            #emailClient="ngModel" [(ngModel)]="service.formData.emailClient"
+            required [class.invalid]="emailClient.invalid &#038;&#038; emailClient.touched" ngModel [email]="true">
+    </div>
+    <div class="form-group">
+        <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">SUBMIT</button>
+    </div>
+</form>

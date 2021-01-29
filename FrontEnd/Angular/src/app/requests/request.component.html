@@ -1,0 +1,38 @@
+<div class="jumbotron py-3">
+    <h1 class="display-4 text-center">Pedidos</h1>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5">
+            <app-request-form></app-request-form>
+        </div>
+        <div class="col-md-7">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Numero do pedido</th>
+                        <th>Data do Pedido</th>
+                        <th>Produtos</th>
+                        <th>Cliente</th>
+                        <th>Valor</th>
+                        <th>Desconto</th>
+                        <th>Valor Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tr *ngFor="let requestinfo of service.list">
+                    <td (click)="populateForm(requestinfo)">{{requestinfo.numberRequest}}</td>
+                    <td (click)="populateForm(requestinfo)">{{requestinfo.dateRequest | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                    <td (click)="populateForm(requestinfo)">{{printProducts(requestinfo)}}</td>
+                    <td (click)="populateForm(requestinfo)">{{requestinfo.idClient}}</td>
+                    <td (click)="populateForm(requestinfo)">{{requestinfo.valueRequest}}</td>
+                    <td (click)="populateForm(requestinfo)">{{requestinfo.discountRequest}}</td>
+                    <td (click)="populateForm(requestinfo)">{{requestinfo.totalValue}}</td>
+                    <td>
+                        <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(requestinfo.idRequest)"></i>
+                    </td>
+                </tr>
+            </table>
+        </div>
+</div>
+

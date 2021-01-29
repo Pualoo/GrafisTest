@@ -1,0 +1,28 @@
+<div class="jumbotron py-3">
+    <h1 class="display-4 text-center">Client</h1>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5">
+            <app-client-form></app-client-form>
+        </div>
+        <div class="col-md-7">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tr *ngFor="let clientinfo of service.list">
+                    <td (click)="populateForm(clientinfo)">{{clientinfo.nameClient}}</td>
+                    <td (click)="populateForm(clientinfo)">{{clientinfo.emailClient}}</td>
+                    <td>
+                        <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(clientinfo.idClient)"></i>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

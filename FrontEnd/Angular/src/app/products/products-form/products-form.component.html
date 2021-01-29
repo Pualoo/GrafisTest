@@ -1,0 +1,26 @@
+<form novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
+    <input type="hidden" name="idProduct" [value]="service.formData.idProduct" />
+    <input type="hidden" name="imgPath" [value]=" " [(ngModel)]="service.formData.imgPath"/>
+    <div class="form-group">
+        <label>Nome do Produto</label>
+        <input class="form-control form-control-lg" placeholder="Nome do Produto..." name="nameProduct"
+            #nameProduct="ngModel" [(ngModel)]="service.formData.nameProduct"
+            required [class.invalid]="nameProduct.invalid &#038;&#038; nameProduct.touched">
+    </div>
+    <div class="form-group">
+        <label>Descrição</label>
+        <input class="form-control form-control-lg" placeholder="Descrição..." name="descriptionProduct"
+            #descriptionProduct="ngModel" [(ngModel)]="service.formData.descriptionProduct"
+            required [class.invalid]="descriptionProduct.invalid &#038;&#038; descriptionProduct.touched">
+    </div>
+    <div class="form-group">
+        <label>Valor</label>
+        <input type="number" min="0" class="form-control form-control-lg" placeholder="00,00" name="valueProduct"
+            #valueProduct="ngModel" [(ngModel)]="service.formData.valueProduct"
+            required [class.invalid]="valueProduct.invalid &#038;&#038; valueProduct.touched" oninput="validity.valid||(value='');">
+    </div>
+    <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
+    <div class="form-group">
+        <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">SUBMIT</button>
+    </div>
+</form>
