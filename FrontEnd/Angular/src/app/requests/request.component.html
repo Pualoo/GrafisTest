@@ -24,7 +24,7 @@
                     <td (click)="populateForm(requestinfo)">{{requestinfo.numberRequest}}</td>
                     <td (click)="populateForm(requestinfo)">{{requestinfo.dateRequest | date:'dd/MM/yyyy HH:mm:ss'}}</td>
                     <td (click)="populateForm(requestinfo)">{{printProducts(requestinfo)}}</td>
-                    <td (click)="populateForm(requestinfo)">{{requestinfo.idClient}}</td>
+                    <td (click)="populateForm(requestinfo)">{{printClients(requestinfo)}}</td>
                     <td (click)="populateForm(requestinfo)">{{requestinfo.valueRequest}}</td>
                     <td (click)="populateForm(requestinfo)">{{requestinfo.discountRequest}}</td>
                     <td (click)="populateForm(requestinfo)">{{requestinfo.totalValue}}</td>

@@ -23,14 +23,16 @@ export class RequestFormComponent implements OnInit {
   formSubmit: NgForm;
   valueRequest: number = 0;
   valueTotal: number = 0;
-  alertValueTotal: string = "";
+  discountRequest: number = 0;
+  inputDiscount: any;
 
   constructor(public service: RequestService, private toastr:ToastrService, private fb: FormBuilder, private http: HttpClient) {
     this.myForm = FormGroup.prototype;
     this.formSubmit = NgForm.prototype;
     this.createForm();
-    this.myForm.valueChanges.subscribe(console.log);
-    this.myForm.valueChanges.subscribe(x => {this.updateValues()} );
+    this.myForm.valueChanges.subscribe(console.table);
+    this.myForm.valueChanges.subscribe(x => {this.adjustValues()} );
+    this.myForm.controls['idRequest'].valueChanges.subscribe(x =>{this.updateValues()});
   }
 
   ngOnInit(): void {
@@ -133,6 +135,15 @@ export class RequestFormComponent implements OnInit {
   }
 
   updateValues(){
+    this.myForm.controls['idClient'].setValue(this.service.formData.idClient);
+    //this.myForm.setValue(this.service.formData)
+    //this.myForm.controls['requestProducts'].setValue(this.service.formData.requestProducts);
+    this.myForm.controls['discountRequest'].patchValue(this.service.formData.discountRequest);
+    // this.discountRequest = this.service.formData.discountRequest
+    
+  }
+
+  adjustValues(){
     if(this.myForm.controls['requestProducts'].value != undefined){
       var listRequestProduct = [] as RequestProduct[];
       listRequestProduct = this.myForm.controls['requestProducts'].value;

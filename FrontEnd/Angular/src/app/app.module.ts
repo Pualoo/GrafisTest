@@ -37,7 +37,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ReactiveFormsModule,
     NgSelectModule
   ],
-  providers: [],
+  providers: [
+    RequestFormComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

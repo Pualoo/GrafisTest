@@ -7,6 +7,8 @@ import { HttpClient } from '@angular/common/http';
 import { RequestProduct } from '../shared/request-product.model';
 import { Product } from '../shared/product.model';
 import { element } from 'protractor';
+import { RequestFormComponent } from './request-form/request-form.component';
+import { Client } from '../shared/client.model';
 
 @Component({
   selector: 'app-request',
@@ -16,8 +18,9 @@ import { element } from 'protractor';
 })
 export class RequestComponent implements OnInit {
   listProducts: Product[] = [];
+  listClients: Client[] = [];
   listRequestProduct: RequestProduct[] = [];
-  constructor(public service: RequestService, private http: HttpClient) {}
+  constructor(public service: RequestService, private http: HttpClient, public component: RequestFormComponent) {}
 
   ngOnInit(){
     this.service.refreshList();
@@ -25,6 +28,7 @@ export class RequestComponent implements OnInit {
 
   populateForm(selectedRecord : Request) {
     this.service.formData = Object.assign({}, selectedRecord);
+    this.component.updateValues();
   }
 
   onDelete(IdRequest: number) {
@@ -66,6 +70,23 @@ export class RequestComponent implements OnInit {
     return stringRequestProduct;
   }
 
+  printClients(request: Request){
+    var stringEmailClient = "";
+    if(this.listClients.length == 0){
+      this.http.get('https://localhost:44390/api/Clients')
+      .toPromise()
+      .then(res =>this.listClients = res as Client[]);
+    }
+    
+    this.listClients.forEach( element => {
+      if(element.idClient == request.idClient){
+        stringEmailClient = element.emailClient;
+      }
+    });
+
+    return stringEmailClient;
+  }
+
   populateArrays(){
     this.http.get('https://localhost:44390/api/Products')
       .toPromise()
@@ -75,5 +96,6 @@ export class RequestComponent implements OnInit {
       .toPromise()
       .then(res =>this.listRequestProduct = res as RequestProduct[]);
   }
+
 
 }
