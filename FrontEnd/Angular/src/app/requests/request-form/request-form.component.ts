@@ -25,6 +25,7 @@ export class RequestFormComponent implements OnInit {
   valueTotal: number = 0;
   discountRequest: number = 0;
   inputDiscount: any;
+  invalidValueTotal: boolean = false;
 
   constructor(public service: RequestService, private toastr:ToastrService, private fb: FormBuilder, private http: HttpClient) {
     this.myForm = FormGroup.prototype;
@@ -32,7 +33,6 @@ export class RequestFormComponent implements OnInit {
     this.createForm();
     this.myForm.valueChanges.subscribe(console.table);
     this.myForm.valueChanges.subscribe(x => {this.adjustValues()} );
-    this.myForm.controls['idRequest'].valueChanges.subscribe(x =>{this.updateValues()});
   }
 
   ngOnInit(): void {
@@ -63,7 +63,8 @@ export class RequestFormComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
-    this.formSubmit.form = form; 
+    this.formSubmit.form = form;
+    this.service.formData.requestProducts = []; 
     this.setValues();
     if (this.service.formData.idRequest == 0)
       this.insertRecord(this.formSubmit);
@@ -136,6 +137,7 @@ export class RequestFormComponent implements OnInit {
 
   updateValues(){
     this.myForm.controls['idClient'].setValue(this.service.formData.idClient);
+    this.service.formData.requestProducts.reduce;
     //this.myForm.setValue(this.service.formData)
     //this.myForm.controls['requestProducts'].setValue(this.service.formData.requestProducts);
     this.myForm.controls['discountRequest'].patchValue(this.service.formData.discountRequest);
@@ -154,12 +156,14 @@ export class RequestFormComponent implements OnInit {
         this.productsArray.forEach(elementProduct => {
           if(elementRequestProduct.idProduct == elementProduct.idProduct){
             this.valueRequest += elementProduct.valueProduct * elementRequestProduct.quantityProduct;
+            this.invalidValueTotal = false;
           }
         });
       });
       this.valueTotal = this.valueRequest - this.myForm.controls['discountRequest'].value;
       if(this.valueTotal<0){
         this.toastr.warning('O valor do desconto não pode ser maior que o valor total do pedido.' ,'Request');
+        this.invalidValueTotal = true
       }
     }
   }

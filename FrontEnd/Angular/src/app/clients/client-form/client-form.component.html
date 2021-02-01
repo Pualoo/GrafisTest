@@ -4,7 +4,7 @@
         <label>NAME</label>
         <input class="form-control form-control-lg" placeholder="Full Name" name="nameClient"
             #nameClient="ngModel" [(ngModel)]="service.formData.nameClient"
-            required [class.invalid]="nameClient.invalid &#038;&#038; nameClient.touched" minlength="3" pattern="[a-zA-Z ]*">
+            required [class.invalid]="nameClient.invalid &#038;&#038; nameClient.touched" minlength="3">
     </div>
     <div class="form-group">
         <label>EMAIL</label>
