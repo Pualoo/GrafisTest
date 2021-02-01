@@ -53,11 +53,11 @@ export class RequestFormComponent implements OnInit {
         this.resetForm(form);
         this.service.refreshList();
         window.location.reload();
-        this.toastr.success('Submitted succefully','Request');
+        this.toastr.success('Enviado com sucesso','Request');
       },
       err => { 
         console.log(err);
-        this.toastr.error('Erro ao cadastrar! verifique os campos do formulário e tente novamente.','Request');
+        this.toastr.error('Erro ao cadastrar! verifique os campos do formulário e tente novamente.','Pedido');
        }
     )
   }
@@ -78,11 +78,11 @@ export class RequestFormComponent implements OnInit {
         this.resetForm(form);
         this.service.refreshList();
         window.location.reload();
-        this.toastr.success('Submitted succefully','Product');
+        this.toastr.success('Enviado com sucesso','Pedido');
       },
       err => { 
         console.log(err);
-        this.toastr.error('Erro ao atualizar o cadastro! verifique os campos do formulário e tente novamente.' ,'Request');
+        this.toastr.error('Erro ao atualizar o cadastro! verifique os campos do formulário e tente novamente.' ,'Pedido');
        }
     )
   }
@@ -162,7 +162,7 @@ export class RequestFormComponent implements OnInit {
       });
       this.valueTotal = this.valueRequest - this.myForm.controls['discountRequest'].value;
       if(this.valueTotal<0){
-        this.toastr.warning('O valor do desconto não pode ser maior que o valor total do pedido.' ,'Request');
+        this.toastr.warning('O valor do desconto não pode ser maior que o valor total do pedido.' ,'Pedido');
         this.invalidValueTotal = true
       }
     }

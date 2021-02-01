@@ -31,11 +31,11 @@ export class ProductsFormComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.service.refreshList();
-        this.toastr.success('Submitted succefully','Product');
+        this.toastr.success('Enviado com sucesso','Produto');
       },
       err => { 
         console.log(err);
-        this.toastr.error('Erro ao cadastrar! verifique os campos do formulário e tente novamente.','Product');
+        this.toastr.error('Erro ao cadastrar! verifique os campos do formulário e tente novamente.','Produto');
        }
     )
   }
@@ -53,11 +53,11 @@ export class ProductsFormComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.service.refreshList();
-        this.toastr.success('Submitted succefully','Product');
+        this.toastr.success('Enviado com sucesso','Produto');
       },
       err => { 
         console.log(err);
-        this.toastr.error('Erro ao atualizar o cadastro! verifique os campos do formulário e tente novamente.','Product');
+        this.toastr.error('Erro ao atualizar o cadastro! verifique os campos do formulário e tente novamente.','Produto');
        }
     )
   }

@@ -27,7 +27,7 @@ export class ClientFormComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.service.refreshList();
-        this.toastr.success('Submitted succefully','Client');
+        this.toastr.success('Enviado com sucesso','Cliente');
       },
       err => { 
         console.log(err);
@@ -48,6 +48,7 @@ export class ClientFormComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.service.refreshList();
+        this.toastr.success('Enviado com sucesso','Cliente');
       },
       err => {
         console.log(err);
